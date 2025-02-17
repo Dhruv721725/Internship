@@ -20,25 +20,32 @@ class LoginPage extends StatelessWidget{
   Widget build(BuildContext context) {
     
     
-    void login(){
+    void login()async{
       String email=_usercontroller.text.trim();
       showDialog(context: context, builder: (context)=>Center(child: CircularProgressIndicator(),));
       if (email!="") {
         try {
-          _auth.login(email, _passcontroller.text);
+          await _auth.login(email, _passcontroller.text);  
+          Navigator.pop(context);
         } catch (e) {
+          Navigator.pop(context);
           showDialog(
             context: context, 
             builder: (context)=>AlertDialog(
-              content: Text(e.toString()
-                .split(":")[1].trim().split(" ")
-                .map((w)=>w[0].toUpperCase()+w.substring(1))
-                .join(" "),),
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(e.toString()
+                    .split(":")[1].trim().split("-")
+                    .map((w)=>w[0].toUpperCase()+w.substring(1))
+                    .join(" "),),
+                ],
+              ),
+              contentPadding: EdgeInsets.all(16),
             )
           );
         }
       }
-      Navigator.pop(context);
     }
     return Scaffold(
       body: Center(

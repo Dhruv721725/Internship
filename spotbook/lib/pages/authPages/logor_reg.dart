@@ -14,7 +14,6 @@ class _LogorRegState extends State<LogorReg> {
         showLoginPage=!showLoginPage;
         }
       ); 
-      print("clicked !!");
     }
   @override
   Widget build(BuildContext context) {

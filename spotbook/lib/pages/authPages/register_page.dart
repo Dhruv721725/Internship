@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:spotbook/auth/auth_services.dart';
 import 'package:spotbook/components/comp_button.dart';
 import 'package:spotbook/components/comp_textfield.dart';
 
@@ -15,12 +18,44 @@ class RegisterPage extends StatelessWidget{
   TextEditingController _cnfrmpasscontroller= TextEditingController();
   TextEditingController _usernamecontroller= TextEditingController();
   
-  void register(){
- 
-  }
+  AuthServices _auth = AuthServices();
+  FirebaseFirestore _firestore= FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
+    void register()async {
+      String email=_usercontroller.text.trim();
+      showDialog(context: context, builder: (context)=>Center(child: CircularProgressIndicator(),));
+      if (_passcontroller.text==_cnfrmpasscontroller.text) {
+        try {
+          await _auth.register(email, _passcontroller.text, _usernamecontroller.text);
+          Navigator.pop(context);
+        } catch (e) {
+          Navigator.pop(context);
+          showDialog(
+            context: context, 
+            builder: (context)=>AlertDialog(
+              content: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(e.toString()
+                    .split(":")[1].trim().split("-")
+                    .map((w)=>w[0].toUpperCase()+w.substring(1))
+                    .join(" "),),
+                ],
+              ),
+              contentPadding: EdgeInsets.all(16),
+            )
+          );
+        }
+      }else{  
+        Navigator.pop(context);
+        showDialog(context: context, builder: (context)=>AlertDialog(
+          content: Text("Password Mismatch"),
+          contentPadding: EdgeInsets.all(16),
+        ));
+      }
+    }
     return Scaffold(
       body: Center(
         child: Column(
