@@ -4,6 +4,7 @@ import 'package:listify/auth/auth_service.dart';
 import 'package:listify/components/comp_button.dart';
 import 'package:listify/components/comp_textfield.dart';
 import 'package:listify/components/comp_warning.dart';
+import 'package:listify/firestore/fire_store.dart';
 
 class RegisterPage extends StatelessWidget {
   Function()? toggle;
@@ -37,6 +38,8 @@ class RegisterPage extends StatelessWidget {
       }else{
         try {
           await _auth.register(eemail, epass);
+          FireStore _fireStore=FireStore();
+          _fireStore.addUser(ename, eemail, epass);
           Navigator.pop(context);
         } on Exception catch (e) {
           Navigator.pop(context);

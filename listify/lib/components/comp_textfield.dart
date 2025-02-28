@@ -26,6 +26,7 @@ class _CompTextfieldState extends State<CompTextfield> {
       child: TextField(
         controller: widget.controller,
         obscureText: widget.obscureText,
+        cursorColor: Theme.of(context).colorScheme.inversePrimary,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(16),
           fillColor: Theme.of(context).colorScheme.secondary,

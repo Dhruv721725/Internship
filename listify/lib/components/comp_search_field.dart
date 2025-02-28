@@ -15,13 +15,12 @@ class CompSearchField extends StatelessWidget{
       margin: EdgeInsets.symmetric(horizontal: 25, vertical: 5),
       child: TextField(
         controller: controller,
-
+        cursorColor: Theme.of(context).colorScheme.inversePrimary,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.all(16),
           fillColor: Theme.of(context).colorScheme.secondary,
           filled: true,
           hintText:"Search category..",
-          
           suffixIcon: IconButton(
             onPressed:onSearch, 
             icon: Icon(Icons.search, color: Theme.of(context).colorScheme.inversePrimary,),

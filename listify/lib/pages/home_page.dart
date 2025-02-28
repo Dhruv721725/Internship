@@ -55,9 +55,7 @@ class _HomePageState extends State<HomePage> {
                     child: CircularProgressIndicator(),
                   );
                 }else if(snapshot.hasData){
-
-                  return ListView(
-                    children: snapshot.data!.docs.map((ele){
+                  List<Widget> taskwidgetlist=snapshot.data!.docs.map((ele){
                       if (cat!="") {
                         if(ele["category"].toString().toLowerCase()==cat.toLowerCase()){
                           return CompTasktile(task: ele);
@@ -67,9 +65,13 @@ class _HomePageState extends State<HomePage> {
                       }else{
                         return CompTasktile(task: ele);
                       }
-                    }).toList(),
-                  );
-            
+                    }).toList();
+
+                  return taskwidgetlist.isNotEmpty? 
+                    ListView(
+                      children: taskwidgetlist
+                    )
+                    :Text("No tasks yet...");
                 }else{
                   return Center(
                     child: Text("No tasks yet..."),
