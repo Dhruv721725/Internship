@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:listify/auth/auth_service.dart';
 import 'package:listify/components/comp_button.dart';
 import 'package:listify/components/comp_textfield.dart';

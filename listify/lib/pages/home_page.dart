@@ -1,13 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:listify/auth/auth_service.dart';
 import 'package:listify/components/comp_add_task.dart';
 import 'package:listify/components/comp_search_field.dart';
 import 'package:listify/components/comp_tasktile.dart';
-import 'package:listify/components/comp_textfield.dart';
 import 'package:listify/firestore/fire_store.dart';
 
 class HomePage extends StatefulWidget{

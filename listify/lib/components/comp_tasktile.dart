@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:intl/intl.dart';
 import 'package:listify/components/comp_button.dart';
 import 'package:listify/components/comp_edit_task.dart';
-import 'package:listify/components/comp_textfield.dart';
 import 'package:listify/firestore/fire_store.dart';
-import 'package:listify/models/task.dart';
 
 class CompTasktile extends StatelessWidget{
   var task;
@@ -90,13 +87,18 @@ class CompTasktile extends StatelessWidget{
           ),
           child: ListTile(
             title: Text(task["task"]),
-            subtitle: Text(
-              task["category"],
-              style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
-            ),
-            trailing: Text(
-              DateFormat.yMMMd().format(task["time"].toDate()).toString(),
-              style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
+            subtitle: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  task["category"],
+                  style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary)
+                ),
+                Text(
+                  DateFormat.yMMMd().format(task["time"].toDate()).toString(),
+                  style: TextStyle(color: Theme.of(context).colorScheme.inversePrimary),
+                ),
+              ],
             ),
           ),
         ),
